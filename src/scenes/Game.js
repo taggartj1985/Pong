@@ -7,8 +7,12 @@ class Game extends Phaser.Scene
     }
 
     create(){
-        const text = this.add.text(400, 250, 'Game Screen!')
-        text.setOrigin(0.5, 0.5)
+        const ball = this.add.circle(400, 250, 10, 0xffffff, 1)
+        // this.physics.add.existing(ball)
+
+        // ball.body.setCollideWorldBounds(true, 1, 1)
+
+        // ball.body.setVelocity(200, 200)
     }
 }
 
