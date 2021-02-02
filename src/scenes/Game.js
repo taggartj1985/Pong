@@ -2,6 +2,9 @@ import Phaser from 'phaser'
 
 class Game extends Phaser.Scene
 {
+    init(){
+        this.paddleRightVelocity = new Phaser.Math.Vector2(0, 0)
+    }
     preload(){
 
     }
@@ -42,16 +45,32 @@ class Game extends Phaser.Scene
         }
 
         const diff = this.ball.y - this.paddleRight.y
-        if (diff < 10)
+        if (Math.abs(diff) < 10)
         {
-            this.paddleRight.y -=10
-            this.paddleRight.body.updateFromGameObject()
+            return
         }
-        else if (diff > 10)
+
+        const aiSpeed = 3
+
+        if (diff < 0)
         {
-            this.paddleRight.y += 10
-            this.paddleRight.body.updateFromGameObject()
+            this.paddleRightVelocity.y = -aiSpeed
+            if (this.paddleRightVelocity.y < -10)
+            {
+                this.paddleRightVelocity.y = -10
+            }
         }
+        else if (diff > 0)
+        {
+            this.paddleRightVelocity.y = aiSpeed
+            if (this.paddleRightVelocity.y < 10)
+            {
+                this.paddleRightVelocity.y = 10
+            }
+        }
+
+        this.paddleRight.y += this.paddleRightVelocity.y
+        this.paddleRight.body.updateFromGameObject()
     }
 }
 
