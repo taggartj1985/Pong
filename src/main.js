@@ -8,7 +8,7 @@ const config = {
     height: 500,
     type: Phaser.AUTO,
     physics: {
-        defualt: 'arcade',
+        default: 'arcade',
         arcade: {
             gravity: { y: 0 },
             debug: true
