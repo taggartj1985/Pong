@@ -19,10 +19,7 @@ class Game extends Phaser.Scene
 
         this.ball.body.setCollideWorldBounds(true, 1, 1)
 
-        const angle = Phaser.Math.Between(0, 360)
-        const vec = this.physics.velocityFromAngle(angle, 300)
-        
-        this.ball.body.setVelocity(vec.x, vec.y)
+        this.resetBall()
 
         this.paddleLeft = this.add.rectangle(50, 250, 30, 100, 0xffffff, 1)
         this.physics.add.existing(this.paddleLeft, true)
@@ -77,6 +74,25 @@ class Game extends Phaser.Scene
 
         this.paddleRight.y += this.paddleRightVelocity.y
         this.paddleRight.body.updateFromGameObject()
+
+        if (this.ball.x < -30)
+        {
+            this.resetBall()
+        }
+        else if (this.ball.x > 830)
+        {
+            this.resetBall()
+        }
+    }
+
+    resetBall()
+    {
+        this.ball.setPosition(400, 250)
+        
+        const angle = Phaser.Math.Between(0, 360)
+        const vec = this.physics.velocityFromAngle(angle, 300)
+        
+        this.ball.body.setVelocity(vec.x, vec.y)
     }
 }
 
