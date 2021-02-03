@@ -10,13 +10,19 @@ class Game extends Phaser.Scene
     }
 
     create(){
+
+        this.physics.world.setBounds(-100, 0, 1000, 500)
+
         this.ball = this.add.circle(400, 250, 10, 0xffffff, 1)
         this.physics.add.existing(this.ball)
         this.ball.body.setBounce(1, 1)
 
         this.ball.body.setCollideWorldBounds(true, 1, 1)
 
-        this.ball.body.setVelocity(Phaser.Math.Between(-200, 200), Phaser.Math.Between(-200, 200))
+        const angle = Phaser.Math.Between(0, 360)
+        const vec = this.physics.velocityFromAngle(angle, 300)
+        
+        this.ball.body.setVelocity(vec.x, vec.y)
 
         this.paddleLeft = this.add.rectangle(50, 250, 30, 100, 0xffffff, 1)
         this.physics.add.existing(this.paddleLeft, true)
