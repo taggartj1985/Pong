@@ -5,8 +5,8 @@ class Game extends Phaser.Scene
     init(){
         this.paddleRightVelocity = new Phaser.Math.Vector2(0, 0)
         
-        // this.lefScore = 0
-        // this.rightScore = 0
+        this.leftScore = 0
+        this.rightScore = 0
     }
     preload(){
 
@@ -104,8 +104,8 @@ class Game extends Phaser.Scene
 
     incrementLeftScore()
     {
-        // this.leftScore += 1
-        // this.leftScoreLabel.text = this.leftScore
+        this.leftScore += 1
+        this.leftScoreLabel.text = this.leftScore
     }
 
     resetBall()
