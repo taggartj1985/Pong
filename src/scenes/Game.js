@@ -94,11 +94,12 @@ class Game extends Phaser.Scene
         if (this.ball.x < -30)
         {
             this.resetBall()
-            this.incrementLeftScore()
+            this.incrementRightScore()
         }
         else if (this.ball.x > 830)
         {
             this.resetBall()
+            this.incrementLeftScore()
         }
     }
 
@@ -106,6 +107,12 @@ class Game extends Phaser.Scene
     {
         this.leftScore += 1
         this.leftScoreLabel.text = this.leftScore
+    }
+
+    incrementRightScore()
+    {
+        this.rightScore += 1
+        this.rightScoreLabel.text = this.rightScore
     }
 
     resetBall()
